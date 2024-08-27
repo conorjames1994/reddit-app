@@ -1,45 +1,93 @@
 import { useSelector,useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { mediaSelector } from "./mediaSlice";
+import { errorSelector, loadingSelector, specificErrorSelector } from "./mediaSlice";
 import { fetchRedditPopular } from "./mediaSlice";
-
+import { GetMoreButton } from "../../getMoreButton";
 
 export function Media (){
   
-  const articles = useSelector(mediaSelector)
- ;
+  const articles = useSelector(mediaSelector);
+  const errors = useSelector(errorSelector);
+  const loading = useSelector(loadingSelector);
+  const error = useSelector(specificErrorSelector);
+
+
+const [clicked, setClicked] = useState (false);
+
+const [count, setCount] = useState(0);
+const [secondCount, setSecondCount] = useState(10)
+
+  const clickHandler = () => {
+    setClicked(!clicked)
+  }
 
   const dispatch = useDispatch();
+  
   useEffect(()=> {
-    
-
       dispatch(fetchRedditPopular());
-    
 
-    
-  })
+      
+      
+      setCount(prev => prev + 10);
 
+      setSecondCount(prev => prev + 10
+      )
+
+  }, [clicked])
+  console.log(articles);
+  console.log(count)
+  console.log(secondCount)
+
+  if(loading){
+
+    return (
+      <h1> Loading ... </h1>
+    )
+  }
+
+  if(errors){
+    
+    return (
+      <p role="alert"> {error} </p>
+    )
+  }
+
+ 
 
   return (
-    <div>
-      {articles.map((article, index) => {
+    <div className="article">
+      {articles.slice(count, secondCount).map((article, index) => {
+        
         return (
-          <div>
-             
-             <div>
-         <video key={index} width="320" height="240" controls>
-         <source src={article.secure_media} type="video/mp4"/>
-           Your browser does not support the video tag.
-           </video>
-           </div>
+          <div key={article.id}>
+            <h1 >r/{article.subreddit}</h1>
+            <div>
+           
+            
+            {article.preview ? <img src={article.preview.images[0].source.url} height="200" width="200" /> : null}
+            
 
-          <h1 key={index}>{article.title}</h1>
-          <h1 key={index}>{article.author}</h1>
-          <a href={article.url} key={index} >{article.url} </a>
+
+            </div>
+
+
+
+          <h1 >{article.title}</h1>
          
+          <h1 >{article.author}</h1>
+          <h3 >comments-{article.num_comments}</h3> 
+          <h3 >ups- {article.ups}</h3>
+
+          <a href={article.url}  >{article.url} </a>
+         <br/>
           </div>
+          
         )
+      
       })}
+      <br />
+      <GetMoreButton clickHandler={clickHandler}/>
     </div>
   )
  

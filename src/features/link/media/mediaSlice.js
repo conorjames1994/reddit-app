@@ -9,7 +9,7 @@ import { fakeData } from "../../fakeData";
 export const fetchRedditPopular = createAsyncThunk(
   'home/loadHomeFeed',
   async() => {       
-      const url = 'https://www.reddit.com/r/popular/hot.json?';
+      const url = 'https://www.reddit.com/r/popular/hot.json?raw_json=1';
       
       const response = await fetch(url);
       if(!response.ok) {
@@ -39,6 +39,7 @@ export const fetchRedditPopular = createAsyncThunk(
 
     isLoading: false,
     hasError: false,
+    error: null,
 },
 
   reducers: {},
@@ -51,14 +52,21 @@ export const fetchRedditPopular = createAsyncThunk(
     .addCase(fetchRedditPopular.rejected, (state, action) => {
       state.isLoading = false;
       state.hasError = true;
+      state.error = action.error.message;
+
   })
   .addCase(fetchRedditPopular.fulfilled, (state, action) => {
     state.isLoading = false;
     state.hasError = false;
-    const newData = action.payload.data.children.map((child) => {
-      state.media.push(child.data)})
+     
+      const newData = action.payload.data.children.map((child) => {
+        state.media.push(child.data)
+     })
       
-    
+      
+      
+  
+      
 })
   }
 })
@@ -69,3 +77,14 @@ export const mediaSelector = (state) => {
   return state.media.media
 }
 
+export const loadingSelector = (state) => {
+  return state.media.isLoading ;
+}
+
+export const errorSelector = (state) => {
+  return state.media.hasError ;
+}
+
+export const specificErrorSelector = (state) => {
+  return state.media.error ;
+}
