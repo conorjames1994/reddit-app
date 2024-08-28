@@ -35,9 +35,7 @@ const [secondCount, setSecondCount] = useState(10)
       )
 
   }, [clicked])
-  console.log(articles);
-  console.log(count)
-  console.log(secondCount)
+  
 
   if(loading){
 
