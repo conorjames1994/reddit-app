@@ -1,6 +1,7 @@
 import { searchResults, searchBarSelector, loadingSelector, errorSelector, specificErrorSelector } from "./searchBarSlice";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 
 
@@ -72,7 +73,7 @@ return (
 
           <h2>{result.subreddit}</h2>
           <h3>{result.author}</h3>
-          <a href={result.url}>{result.url}</a>
+          <Link to={result.url}>{result.url}</Link>
 
 
 

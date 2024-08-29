@@ -1,5 +1,6 @@
 import { useSelector,useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { mediaSelector } from "./mediaSlice";
 import { errorSelector, loadingSelector, specificErrorSelector } from "./mediaSlice";
 import { fetchRedditPopular } from "./mediaSlice";
@@ -27,12 +28,18 @@ const [secondCount, setSecondCount] = useState(10)
   useEffect(()=> {
       dispatch(fetchRedditPopular());
 
+      setCount(0);
+      setSecondCount(10);
       
       
-      setCount(prev => prev + 10);
+}, [])
 
-      setSecondCount(prev => prev + 10
-      )
+  
+
+  useEffect(() => {
+    setCount(prev => prev + 10);
+
+    setSecondCount(prev => prev + 10);
 
   }, [clicked])
   
@@ -77,7 +84,7 @@ const [secondCount, setSecondCount] = useState(10)
           <h3 >comments-{article.num_comments}</h3> 
           <h3 >ups- {article.ups}</h3>
 
-          <a href={article.url}  >{article.url} </a>
+          <Link to={article.url}  >{article.url} </Link>
          <br/>
           </div>
           

@@ -1,5 +1,6 @@
 import { SearchBar } from "../features/searchBar/searchBar";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 export function DisplaySearchResults (){
 
@@ -39,6 +40,9 @@ export function DisplaySearchResults (){
       <input value={searchTerm} onChange={changeHandler}></input>
       <button onClick={clickHandler} >Search</button>
       <button onClick={clearResults} >Clear Results</button>
+      <br />
+      <NavLink to="/"> Reddit Feed </NavLink>
+      <br />
      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm}clicked={clicked} moreClick={moreClick} clear={clear} clearResults={clearResults} setClear={setClear}/> 
      <br />
      <button onClick={moreClickHandler}>More articles</button>
