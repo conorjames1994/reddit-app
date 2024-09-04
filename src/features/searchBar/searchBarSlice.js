@@ -17,14 +17,7 @@ export const searchBarSlice = createSlice({
   name: "searchBar",
   initialState: {
      searchBar: [
-      {
-        author: "author",
-      secure_media: "media-type",
-      title: "title",
-      subreddit: "subreddit",
-      url: "url",
-      id: "id"
-      }
+    
      ],
 
      hasError: false,

@@ -23,6 +23,7 @@ export function DisplaySearchResults (){
   const moreClickHandler = (e) => {
     e.preventDefault();
     setMoreClick(!moreClick)
+    window.scrollTo(0,0)
   }
   
   const [clear, setClear] =useState(false);

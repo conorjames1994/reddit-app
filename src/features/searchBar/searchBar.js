@@ -2,6 +2,7 @@ import { searchResults, searchBarSelector, loadingSelector, errorSelector, speci
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 
 
@@ -15,10 +16,7 @@ const dispatch = useDispatch()
 
 const [count, setCount] = useState(0);
 const [secondCount, setSecondCount] = useState(10);
-console.log(releventSearchResults)
-console.log(props.searchTerm)
-console.log(count)
-console.log(secondCount)
+
 
 useEffect(()=> {
  props.setClear(false);
@@ -64,7 +62,7 @@ return (
     {releventSearchResults.slice(count, secondCount).map((result) => {
       return (
         
-        <div id={result.id}>
+        <div key={result.id}>
           <h1>{result.title}</h1>
           <div>
           {result.preview ? <img src={result.preview.images[0].source.url} height="200" width="200" /> : null}
@@ -74,6 +72,8 @@ return (
           <h2>{result.subreddit}</h2>
           <h3>{result.author}</h3>
           <Link to={result.url}>{result.url}</Link>
+          <br />
+          <NavLink  to="/commentsPage" state={result.permalink}>comments-{result.num_comments} </NavLink>
 
 
 

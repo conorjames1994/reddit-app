@@ -12,6 +12,7 @@ export function NewsArticle (){
       <br />
       <NavLink to="DisplaySearchResults">Search Reddit</NavLink>
       <br />
+      
       <Media />
     
     </div>

@@ -29,13 +29,7 @@ export const fetchRedditPopular = createAsyncThunk(
   name: "media",
   initialState: {
     media: [
-     {
-      author: "author",
-      secure_media: "media-type",
-      title: "title",
-      url: "url",
-      id: "id"
-    }],
+     ],
 
     isLoading: false,
     hasError: false,
