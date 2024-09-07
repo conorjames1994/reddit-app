@@ -12,6 +12,8 @@ export function NewsArticle (){
       <br />
       <NavLink to="DisplaySearchResults">Search Reddit</NavLink>
       <br />
+      <NavLink to="/subredditList"> Subreddit List</NavLink>
+      <br />
       
       <Media />
     

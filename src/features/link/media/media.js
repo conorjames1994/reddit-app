@@ -82,7 +82,7 @@ const [secondCount, setSecondCount] = useState(10)
             
             {article.preview ? <img src={article.preview.images[0].source.url} height="200" width="200" /> : null}
             
-
+            
 
             </div>
 

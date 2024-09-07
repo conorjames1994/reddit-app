@@ -23,7 +23,7 @@ useEffect(() => {
   
   
 
- dispatch(fetchReleventComments(state));
+ console.log(dispatch(fetchReleventComments(state)));
  props.setCount(0);
  props.setSecondCount(10)
 
@@ -32,7 +32,6 @@ useEffect(() => {
 
 
 
-console.log(releventCommentsArray)
 
 
 

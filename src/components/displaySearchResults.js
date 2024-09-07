@@ -44,6 +44,8 @@ export function DisplaySearchResults (){
       <br />
       <NavLink to="/"> Reddit Feed </NavLink>
       <br />
+      <NavLink to="/subredditList"> Subreddit List</NavLink>
+      <br />
      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm}clicked={clicked} moreClick={moreClick} clear={clear} clearResults={clearResults} setClear={setClear}/> 
      <br />
      <button onClick={moreClickHandler}>More articles</button>

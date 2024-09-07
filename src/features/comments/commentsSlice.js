@@ -33,12 +33,13 @@ extraReducers: (builder) => {
   .addCase(fetchReleventComments.rejected, (state, action) => {
     state.isLoading = false;
     state.hasError = true;
+    state.error = action.error.message;
   })
   .addCase(fetchReleventComments.fulfilled, (state, action) => {
     state.isLoading = false;
     state.hasError = false;
     const [obj1, obj2] = action.payload;
-    obj2.data.children.map(child => state.comments.push(child.data))
+    state.comments = obj2.data.children.map(child => child.data)
   })
 }
 });

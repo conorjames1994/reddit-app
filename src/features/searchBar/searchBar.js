@@ -22,7 +22,7 @@ useEffect(()=> {
  props.setClear(false);
 
   if(props.searchTerm.length > 0){
- dispatch(searchResults(props.searchTerm))
+ console.log(dispatch(searchResults(props.searchTerm)))
   };
   props.setSearchTerm("");
   setCount(0);
