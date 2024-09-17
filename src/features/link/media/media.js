@@ -6,6 +6,9 @@ import { errorSelector, loadingSelector, specificErrorSelector } from "./mediaSl
 import { fetchRedditPopular } from "./mediaSlice";
 import { GetMoreButton } from "../../getMoreButton";
 import { Comments } from "../../comments/comments";
+import styles from './media.module.css'
+import { Helmet } from "react-helmet";
+
 
 export function Media (){
   
@@ -71,13 +74,13 @@ const [secondCount, setSecondCount] = useState(10)
  
 
   return (
-    <div className="article">
+    <div className={styles.articles}>
       {articles.slice(count, secondCount).map((article, index) => {
         
         return (
-          <div key={article.id}>
-            <h1 >r/{article.subreddit}</h1>
-            <div>
+          <div className={styles.article} key={article.id}>
+            <h2 className={styles.subreddit}>r/{article.subreddit}</h2>
+            <div className={styles.image}>
            
             
             {article.preview ? <img src={article.preview.images[0].source.url} height="200" width="200" /> : null}
@@ -88,18 +91,26 @@ const [secondCount, setSecondCount] = useState(10)
 
 
 
-          <h1 >{article.title}</h1>
+          <h1 className={styles.title}>"{article.title}"</h1>
          
-          <h1 >{article.author}</h1>
+         <div className={styles.author}>
+          <h3>Author- 
+            <div style={{color: "orange"}}>{article.author}
+              </div>
+            </h3>
+          <h4 >Ups- 
+            <div style={{color: "orange"}}>{article.ups}
+              </div>
+              </h4>
+          </div>
           
-          <h3 >ups- {article.ups}</h3>
-
-          <Link to={article.url}  >{article.url} </Link>
-         <br/>
-         <div>
-         <br />
-         <NavLink  to="/commentsPage"  state={article.permalink}>comments-{article.num_comments} </NavLink>
+         <div className={styles.comments}>
+         
+         
+         <NavLink  to="/commentsPage"  state={article.permalink}>Comments-{article.num_comments} </NavLink>
          </div>
+         
+         <Link  id={styles["link"]} to={article.url}  >{article.url} </Link>
          
          
           </div>
@@ -108,7 +119,7 @@ const [secondCount, setSecondCount] = useState(10)
       
       })}
       <br />
-      <GetMoreButton clickHandler={clickHandler}/>
+      <GetMoreButton  className={styles.button} clickHandler={clickHandler}/>
     </div>
   )
  

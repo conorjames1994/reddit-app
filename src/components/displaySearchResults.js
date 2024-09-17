@@ -1,6 +1,8 @@
 import { SearchBar } from "../features/searchBar/searchBar";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import styles from "./displaySearchResults.module.css"
+import { Helmet } from "react-helmet";
 
 export function DisplaySearchResults (){
 
@@ -37,18 +39,34 @@ export function DisplaySearchResults (){
 
 
   return (
-    <div>
-      <input value={searchTerm} onChange={changeHandler}></input>
+    <div className={styles.container}>
+      <div className={styles.wrapper}>
+      <input className={styles.search} value={searchTerm} onChange={changeHandler} placeholder="Search Reddit..."></input>
+      <div className={styles.button}>
       <button onClick={clickHandler} >Search</button>
+      </div>
+      <div className={styles.button2}>
       <button onClick={clearResults} >Clear Results</button>
-      <br />
+      </div>
+      
+      </div>
+      <div className={styles.wrapper2}>
+      <div className={styles.navBar}>
+      
       <NavLink to="/"> Reddit Feed </NavLink>
-      <br />
+    
       <NavLink to="/subredditList"> Subreddit List</NavLink>
-      <br />
+      
+      </div>
+      <div className={styles.searchFeed}>
      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm}clicked={clicked} moreClick={moreClick} clear={clear} clearResults={clearResults} setClear={setClear}/> 
-     <br />
-     <button onClick={moreClickHandler}>More articles</button>
+     <div id={styles["button3"]}>
+     <button style={{display: "grid", justifyContent: "center"
+     }} onClick={moreClickHandler}>More articles</button>
+     </div>
+     </div>
+     
+     </div>
     </div>
   )
 }

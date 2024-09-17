@@ -1,0 +1,94 @@
+.container {
+  font-family: "fascinate inline";
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 10%, 90%;
+
+  justify-items: center;
+  align-items: center;
+  margin: 0, 0;
+  
+  
+}
+.header{
+  width: 100%;
+  grid-area: 1/ 1/ 2/ 1;
+  background-color: black;
+  display: flexbox;
+  justify-content: center;
+  align-items: center;
+}
+.header h1 {
+  font-size: 3rem;
+  color: orange;
+  display: flex;
+  justify-content: center;
+}
+#navLinks {
+  font-size: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  @media (max-width: 460px) {
+    
+   display: grid;
+  }
+}
+
+#navLinks :hover {
+  color: orange;
+}
+
+#navBar {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+
+  @media (max-width: 460px) {
+    
+    display: grid;
+   }
+}
+
+#button {
+  color: orange;
+  padding: 5px;
+  border: 1px solid;
+  border-radius: 5px;
+  text-decoration: none;
+  box-shadow: 0px, 5px;
+  
+
+  @media (max-width: 460px) {
+    
+    display: grid;
+   }
+}
+#button :hover{
+  cursor: pointer;
+  color: white;
+}
+#button :active {
+  margin-top: 5px;
+  color: orange;
+  box-shadow: 0px, 0px;
+}
+
+.subredditFeed {
+  width: 90%;
+  grid-area: 2/ 1/ 3/ 1;
+  display: flexbox;
+  justify-content: center;
+  align-items: center;
+}
+
+#moreButton {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

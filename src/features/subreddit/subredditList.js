@@ -1,7 +1,8 @@
 import { Subreddit } from "./subreddit"
 import { NavLink, Outlet } from "react-router-dom"
 import { useState } from "react";
-
+import styles from './subredditList.module.css'
+import { Helmet } from "react-helmet";
 
 export function SubredditList (){
 
@@ -43,25 +44,49 @@ const [input, setInput] = useState("subreddits");
   }
 
   return (
-    <div>
-      <NavLink to="/"> Reddit Feed </NavLink>
-      <br />
+    <div className={styles.container}>
+      <div className={styles.header}>
+      <h1>Subreddits</h1>
+      <div id={styles["navLinks"]}>
+    <NavLink to="/"> Reddit Feed </NavLink>
+      
       <NavLink to="/DisplaySearchResults" >Search Reddit</NavLink>
-      <br/>
-      <div>
-    <button onClick={handleBadDogsSub}>{arg[0]}</button>
-    <br/>
-    <button onClick={handleCatsSub}>{arg[1]}</button>
-    <br/>
-    <button onClick={handleDogTrainingSub}>{arg[2]}</button>
-    <br/>
-    <button onClick={reset}>Back to subreddit menu</button>
+      </div>
+
+      <div id={styles["navBar"]}>
+        
+          <div id={styles["button"]}>
+    <button  onClick={handleBadDogsSub}>{arg[0]}</button>
     </div>
-     
+    <div id={styles["button"]}>
+    <button onClick={handleCatsSub}>{arg[1]}</button>
+    </div>
+    <div id={styles["button"]}>
+    <button onClick={handleDogTrainingSub}>{arg[2]}</button>
+    </div>
+    <div id={styles["button"]}>
+    <button onClick={reset}>Subreddit menu</button>
+    </div>
+    
+    
+    </div>
+
+
+      </div>
+      
+      
+
+     <div className={styles.subredditFeed}>
       <Subreddit clicked={clicked} setClicked={setClicked} input={input} setInput={setInput} count={count} setCount={setCount} secondCount={secondCount} setSecondCount={setSecondCount}/>
-     <div>
+     
+      <div id={styles["moreButton"]}>
+      <div id={styles["button"]}>
       <button onClick={getMoreHandler}>More</button>
      </div>
+     </div>
+     
+     </div>
+     
     </div>
   )
 }

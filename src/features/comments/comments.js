@@ -2,7 +2,7 @@ import { errorSelector, specificErrorSelector, commentSelector, loadingSelector,
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-
+import styles from './comments.module.css';
 
 
 
@@ -51,16 +51,22 @@ if(loading){
 
 
 return (
-  <div >
-   <h1>Comments posted {releventCommentsArray.length}</h1>
+  <div className={styles.container}>
+   <h1 id={styles["heading"]}>Comments posted {releventCommentsArray.length}</h1>
    {releventCommentsArray.slice(props.count, props.secondCount).map((comment) => {
     
     return (
-      <div key={comment.id}>
-        <h3>"{comment.body}"</h3>
-        <h5>-{comment.author}</h5>
-        <h3>Ups-{comment.ups}</h3>
-        {comment.replies ? <a>replies- </a> : null}
+      <div className={styles.post} key={comment.id}>
+        <h2 id={styles["title"]}>"{comment.body}"</h2>
+        <h5 id={styles["author"]}>Author - 
+          <div style={{color: "orange"}}>{comment.author}
+          </div>
+          </h5>
+        <h3 id={styles["ups"]}>Ups-
+          <div style={{color: "orange"}}>{comment.ups}
+            </div>
+          </h3>
+        {comment.replies ? <a id={styles["replies"]}>replies- </a> : null}
 
 
       </div>

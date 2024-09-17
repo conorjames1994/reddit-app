@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import styles from "./searchBar.module.css"
 
 
 
@@ -57,23 +58,27 @@ return (
 
 if(props.clear === false){
 return (
-  <div>
+  <div className={styles.container}>
     { count < 11 ? <h2>Results- {releventSearchResults.length}</h2> : null}
     {releventSearchResults.slice(count, secondCount).map((result) => {
       return (
         
-        <div key={result.id}>
-          <h1>{result.title}</h1>
-          <div>
+        <div className={styles.post} key={result.id}>
+          <h1 id={styles["title"]}>{result.title}</h1>
+          <div id={styles["image"]}>
           {result.preview ? <img src={result.preview.images[0].source.url} height="200" width="200" /> : null}
           {result.secure_media ? <video  height="200" width="200" controls/> : null}
           </div>
 
-          <h2>{result.subreddit}</h2>
-          <h3>{result.author}</h3>
+          <h2 id={styles["subreddit"]}>r/{result.subreddit}</h2>
+          <h3 id={styles["author"]}>Author-
+            <div style={{color: "orange"}}>{result.author}</div>
+            </h3>
+          
+          <div id={styles["link"]}>
           <Link to={result.url}>{result.url}</Link>
-          <br />
-          <NavLink  to="/commentsPage" state={result.permalink}>comments-{result.num_comments} </NavLink>
+          </div>
+          <NavLink id={styles["comment"]} to="/commentsPage" state={result.permalink}>comments-{result.num_comments} </NavLink>
 
 
 
