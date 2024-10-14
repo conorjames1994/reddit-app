@@ -18,7 +18,8 @@ const [clicked, setClicked] = useState(false)
   }
 
   const goBack = () => {
-    navigate(-1)
+    setCount(prev => prev -10)
+    setSecondCount(prev => prev -10)
   }
   
 
@@ -46,20 +47,16 @@ const [clicked, setClicked] = useState(false)
     
       <NavLink to="/DisplaySearchResults" onClick={commentStateHandler}> Search page </NavLink>
       </div>
-      <div style={{display: "flex", justifyContent: "center"}}>
+      {count > 9 ? <div style={{display: "flex", justifyContent: "space-around"}}>
       <div id={styles["button"]}>
-      <button  onClick={goBack}>Go back</button>
+      <button  onClick={goBack}>Go Back</button> 
       </div>
-      </div>
+      </div> : null}
       </div>
       <div className={styles.commentFeed}>
-      <Comments clicked={clicked} clickHandler={clickHandler} 
-      count={count} secondCount={secondCount} setCount={setCount} setSecondCount={setSecondCount}/>
-      <div id={styles["moreButton"]}>
-      <div id={styles["button2"]}>
-      <button onClick={moreComments} >More comments</button>
-      </div>
-      </div>
+      <Comments  clicked={clicked} clickHandler={clickHandler} 
+      count={count} secondCount={secondCount} setCount={setCount} setSecondCount={setSecondCount} goBack={goBack} moreComments={moreComments}/>
+    
        </div>  
     </div>
   )

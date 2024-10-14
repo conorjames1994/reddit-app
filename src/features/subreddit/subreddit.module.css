@@ -113,5 +113,34 @@ overflow-wrap: break-word;
   }
  
 }
+#button {
+  color: orange;
+  padding: 5px;
+  border: 1px solid;
+  border-radius: 5px;
+  text-decoration: none;
+  box-shadow: 0px, 5px;
+  
 
+  @media (max-width: 460px) {
+    
+    display: grid;
+   }
+}
+#button :hover{
+  cursor: pointer;
+  color: white;
+}
+#button :active {
+  margin-top: 5px;
+  color: orange;
+  box-shadow: 0px, 0px;
+}
+
+#moreButton {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 

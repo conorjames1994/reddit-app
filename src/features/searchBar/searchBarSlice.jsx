@@ -43,11 +43,9 @@ export const searchBarSlice = createSlice({
     state.isLoading = false;
     state.hasError = false;
      
-      const newData = action.payload.data.children.map((child) => {
-        state.searchBar.push(child.data)
-     })
+     
       
-      
+      state.searchBar = action.payload.data.children.map((child) => child.data)
       
   
       

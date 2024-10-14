@@ -8,6 +8,11 @@ import { CommentsPage } from './components/commentsPage';
 import { SubredditList } from './features/subreddit/subredditList';
 
 
+
+
+
+
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>

@@ -18,14 +18,14 @@ export function NewsArticle (){
       <br />
       <h1>Home feed</h1>
       <br />
-      <NavLink to="/subredditList"> Subreddit List</NavLink>
+      <NavLink to="subredditList"> Subreddit List</NavLink>
       <br />
       
       </div>
       
 
       
-      <div className={styles.newsFeed}>
+      <div className={styles.newsFeed} data-testid="homepage">
       <Media />
       </div>
       

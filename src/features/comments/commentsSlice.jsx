@@ -3,7 +3,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 
 export const fetchReleventComments = createAsyncThunk("getcomments/commentSlice", async (arg, thunkAPI) => {
-  const url = `https://www.reddit.com/${arg}.json`;
+  const url = `https://www.reddit.com${arg}.json`;
+
 
   const response = await fetch(url);
 

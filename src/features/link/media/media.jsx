@@ -16,7 +16,7 @@ export function Media (){
   const errors = useSelector(errorSelector);
   const loading = useSelector(loadingSelector);
   const error = useSelector(specificErrorSelector);
-  
+  const dispatch = useDispatch();
 
 const [commentsClicked, setCommentsClicked] = useState(false);
 
@@ -26,20 +26,29 @@ const commentHandler = (e) => {
  
   setCommentsClicked(!commentsClicked)
 }
-const [clicked, setClicked] = useState (false);
+
 
 const [count, setCount] = useState(0);
 const [secondCount, setSecondCount] = useState(10)
 
   const clickHandler = () => {
-    setClicked(!clicked)
+    
     window.scrollTo(0,0)
+    setCount(prev => prev + 10);
+
+    setSecondCount(prev => prev + 10);
+
   }
 
-  const dispatch = useDispatch();
+  const returnToHomePage = () => {
+    setCount(0);
+    setSecondCount(10);
+  }
+
+
   
   useEffect(()=> {
-      dispatch(fetchRedditPopular());
+    dispatch(fetchRedditPopular());
 
       setCount(0);
       setSecondCount(10);
@@ -48,14 +57,6 @@ const [secondCount, setSecondCount] = useState(10)
 }, [])
 
  
-
-  useEffect(() => {
-    setCount(prev => prev + 10);
-
-    setSecondCount(prev => prev + 10);
-
-  }, [clicked])
-  
 
   if(loading){
 
@@ -71,14 +72,16 @@ const [secondCount, setSecondCount] = useState(10)
     )
   }
 
- 
 
+ 
   return (
+    
     <div className={styles.articles}>
+      
       {articles.slice(count, secondCount).map((article, index) => {
         
         return (
-          <div className={styles.article} key={article.id}>
+          <div className={styles.article} key={article.id} data-testid="result">
             <h2 className={styles.subreddit}>r/{article.subreddit}</h2>
             <div className={styles.image}>
            
@@ -119,7 +122,11 @@ const [secondCount, setSecondCount] = useState(10)
       
       })}
       <br />
-      <GetMoreButton  className={styles.button} clickHandler={clickHandler}/>
+      {count > articles.length ? <div className={styles.button}>
+        <button  onClick={returnToHomePage}>No more articles , click to refresh </button> 
+      </div> : null}
+      
+      {count < articles.length ? <GetMoreButton  className={styles.button} clickHandler={clickHandler}/> : null}
     </div>
   )
  

@@ -23,14 +23,11 @@ useEffect(() => {
   
   
 
- console.log(dispatch(fetchReleventComments(state)));
+ dispatch(fetchReleventComments(state));
  props.setCount(0);
  props.setSecondCount(10)
 
 }, [state]);
-
-
-
 
 
 
@@ -73,6 +70,16 @@ return (
 
     )
    })}
+
+<div id={styles["moreButton"]}>
+      <div id={styles["button2"]}>
+      {props.count > 9 && props.count < releventCommentsArray.length ? <button  onClick={props.goBack}>Go Back</button> : null}
+      {props.count < releventCommentsArray.length ? <button onClick={props.moreComments} >Next Page</button> : null}
+      
+      </div>
+      </div>
+
+      
 
   </div>
 )

@@ -65,7 +65,7 @@ const [input, setInput] = useState("subreddits");
     <button onClick={handleDogTrainingSub}>{arg[2]}</button>
     </div>
     <div id={styles["button"]}>
-    <button onClick={reset}>Subreddit menu</button>
+    <button onClick={reset}>Explore Subreddits</button>
     </div>
     
     
@@ -77,13 +77,9 @@ const [input, setInput] = useState("subreddits");
       
 
      <div className={styles.subredditFeed}>
-      <Subreddit clicked={clicked} setClicked={setClicked} input={input} setInput={setInput} count={count} setCount={setCount} secondCount={secondCount} setSecondCount={setSecondCount}/>
+      <Subreddit clicked={clicked} setClicked={setClicked} input={input} setInput={setInput} count={count} setCount={setCount} secondCount={secondCount} setSecondCount={setSecondCount} getMoreHandler={getMoreHandler}/>
      
-      <div id={styles["moreButton"]}>
-      <div id={styles["button"]}>
-      <button onClick={getMoreHandler}>More</button>
-     </div>
-     </div>
+      
      
      </div>
      

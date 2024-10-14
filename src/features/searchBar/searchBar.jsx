@@ -18,12 +18,25 @@ const dispatch = useDispatch()
 const [count, setCount] = useState(0);
 const [secondCount, setSecondCount] = useState(10);
 
+const moreClickHandler = (e) => {
+  e.preventDefault();
+  setCount(prev => prev + 10);
+  setSecondCount(prev => prev + 10);
+  window.scrollTo(0,0)
+}
+
+const backToStart = () => {
+  
+  setCount(0)
+  setSecondCount(10)
+}
 
 useEffect(()=> {
  props.setClear(false);
 
   if(props.searchTerm.length > 0){
- console.log(dispatch(searchResults(props.searchTerm)))
+ dispatch(searchResults(props.searchTerm))
+ 
   };
   props.setSearchTerm("");
   setCount(0);
@@ -31,10 +44,6 @@ useEffect(()=> {
 
 }, [props.clicked])
 
-useEffect(() => {
-  setCount(prev => prev + 10);
- setSecondCount(prev => prev + 10);
-}, [props.moreClick])
 
 
 if(loading){
@@ -59,7 +68,7 @@ return (
 if(props.clear === false){
 return (
   <div className={styles.container}>
-    { count < 11 ? <h2>Results- {releventSearchResults.length}</h2> : null}
+    { releventSearchResults.length > 0 ? <h2>Results- {releventSearchResults.length}</h2> : null}
     {releventSearchResults.slice(count, secondCount).map((result) => {
       return (
         
@@ -88,6 +97,15 @@ return (
 
 
     })}
+
+{count < releventSearchResults.length ? <div id={styles["button3"]}>
+     <button onClick={moreClickHandler}>More articles</button>
+     </div> : null}
+     {count > releventSearchResults.length ? <div id={styles["button3"]}>
+      <button onClick={backToStart}>No more results, back to start?</button>
+      </div> : null}
+     
+      
   </div>
 )}
 

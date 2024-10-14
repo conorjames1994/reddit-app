@@ -20,13 +20,8 @@ export function DisplaySearchResults (){
     setClicked(!clicked)
   }
 
-  const [moreClick, setMoreClick] = useState(false);
 
-  const moreClickHandler = (e) => {
-    e.preventDefault();
-    setMoreClick(!moreClick)
-    window.scrollTo(0,0)
-  }
+ 
   
   const [clear, setClear] =useState(false);
 
@@ -39,11 +34,11 @@ export function DisplaySearchResults (){
 
 
   return (
-    <div className={styles.container}>
+    <form className={styles.container}>
       <div className={styles.wrapper}>
-      <input className={styles.search} value={searchTerm} onChange={changeHandler} placeholder="Search Reddit..."></input>
+      <input className={styles.search} value={searchTerm} onChange={changeHandler} onKeyDown={(e) => {if (e.key === "Enter" && searchTerm) {clickHandler}}}placeholder="Search Reddit..."></input>
       <div className={styles.button}>
-      <button onClick={clickHandler} >Search</button>
+      <button onClick={clickHandler} type="submit">Search</button>
       </div>
       <div className={styles.button2}>
       <button onClick={clearResults} >Clear Results</button>
@@ -53,20 +48,17 @@ export function DisplaySearchResults (){
       <div className={styles.wrapper2}>
       <div className={styles.navBar}>
       
-      <NavLink to="/"> Reddit Feed </NavLink>
+      <NavLink to="/" > Reddit Feed </NavLink>
     
-      <NavLink to="/subredditList"> Subreddit List</NavLink>
+      <NavLink to="/subredditList" > Subreddit List</NavLink>
       
       </div>
       <div className={styles.searchFeed}>
-     <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm}clicked={clicked} moreClick={moreClick} clear={clear} clearResults={clearResults} setClear={setClear}/> 
-     <div id={styles["button3"]}>
-     <button style={{display: "grid", justifyContent: "center"
-     }} onClick={moreClickHandler}>More articles</button>
-     </div>
+     <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm}clicked={clicked}  clear={clear} clearResults={clearResults} setClear={setClear}/> 
+     
      </div>
      
      </div>
-    </div>
+    </form>
   )
 }
